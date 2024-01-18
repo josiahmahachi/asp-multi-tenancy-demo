@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MultiTenancyDemo",
+    "\\MultiTenancyDemo\\MultiTenancyDemo"
   ],
-  "SelectedNode": "\\C:\\Users\\eight\\Source\\Repos\\asp-multi-tenancy-demo",
+  "SelectedNode": "\\MultiTenancyDemo\\MultiTenancyDemo\\Contracts",
   "PreviewInSolutionExplorer": false
 }
