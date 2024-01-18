@@ -5,13 +5,39 @@ namespace MultiTenancyDemo.Data
 {
     public class TenantDbContext : DbContext
     {
+        private readonly string? _connectionString;
+
         public DbSet<Listing> Listings { get; set; }
 
         public TenantDbContext(DbContextOptions<TenantDbContext> options) : base(options) { }
 
+        public TenantDbContext(string connectionString) : base(CreateOptions(connectionString))
+        {
+            _connectionString = connectionString;
+        }
+
+        private static DbContextOptions CreateOptions(string connectionString)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<TenantDbContext>();
+
+            optionsBuilder.UseSqlServer(connectionString);
+
+            return optionsBuilder.Options;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(_connectionString);
+            }
+
+            base.OnConfiguring(optionsBuilder);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(Listing).Assembly);
+            modelBuilder.Entity<Listing>().ToTable("Listings");
         }
     }
 }

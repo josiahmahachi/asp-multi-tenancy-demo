@@ -1,10 +1,12 @@
 using MultiTenancyDemo.Data;
 using MultiTenancyDemo.Extensions;
+using MultiTenancyDemo.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddMyOptions();
+builder.Services.AddReolvers();
 builder.Services.AddDbContext<PlatformDbContext>();
 builder.Services.AddDbContext<TenantDbContext>();
 
