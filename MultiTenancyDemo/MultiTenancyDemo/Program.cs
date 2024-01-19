@@ -6,7 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddMyOptions();
-builder.Services.AddReolvers();
+builder.Services.AddResolvers();
+builder.Services.AddFactories();
 builder.Services.AddDbContext<PlatformDbContext>();
 builder.Services.AddDbContext<TenantDbContext>();
 
@@ -25,6 +26,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<TenantResolutionMiddleware>();
 
 app.UseAuthorization();
 
