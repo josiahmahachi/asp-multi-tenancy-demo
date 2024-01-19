@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+*.vsidx
+/MultiTenancyDemo/.vs/MultiTenancyDemo/v17/.suo
