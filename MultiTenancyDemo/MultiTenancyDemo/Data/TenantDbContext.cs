@@ -9,11 +9,15 @@ namespace MultiTenancyDemo.Data
 
         public DbSet<Listing> Listings { get; set; }
 
-        public TenantDbContext(DbContextOptions<TenantDbContext> options) : base(options) { }
+        public TenantDbContext(DbContextOptions<TenantDbContext> options) : base(options) 
+        {
+            Listings = Set<Listing>();
+        }
 
         public TenantDbContext(string connectionString) : base(CreateOptions(connectionString))
         {
             _connectionString = connectionString;
+            Listings = Set<Listing>();
         }
 
         private static DbContextOptions CreateOptions(string connectionString)
